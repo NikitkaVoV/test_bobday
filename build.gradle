@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+group = 'ru.nikitavov'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ru.nikitavov.Main'
+    }
+}
+
+shadowJar {
+    baseName = 'test_bobday'
+    version = '1.0'
+    manifest {
+        attributes 'Main-Class': 'ru.nikitavov.Main'
+    }
+}
+
+build {
+    build.dependsOn shadowJar
+}
